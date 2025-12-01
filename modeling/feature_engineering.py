@@ -51,7 +51,7 @@ def race_context_features(race_pace_df):
     max_lap = df['LapNumber'].max()
     df['RacePhase'] = pd.cut( df['LapNumber'], bins=[0, max_lap * 0.33, max_lap * 0.67, max_lap], labels = ['Early', 'Mid', 'Late'])
 
-    df['RaceProgess%'] = (df['LapNumber'] / max_lap) * 100
+    df['RaceProgress%'] = (df['LapNumber'] / max_lap) * 100
 
     print(f'Engineered race context features')
     print(f"Race phases: {df['RacePhase'].unique().tolist()}")
@@ -67,7 +67,7 @@ def complete_feature_set(race_pace_df, pit_df, driver_summary_df):
     df = driver_features(df, driver_summary_df)
     df = race_context_features(df)
 
-    feature_cols = ['Driver', 'LapNumber', 'LapTimeSeconds', 'Compound', 'TireAge', 'LapTimeDelta', 'AvgLap', 'StdLap', 'BestLap', 'PaceVsAvg', 'ConsistencyScore', 'GapFromBest', 'RacePhase', 'RaceProgress%']
+    feature_cols = ['Driver', 'LapNumber', 'LapTimeSeconds', 'Compound', 'Compound_Encoded', 'TireAge', 'LapTimeDelta', 'AvgLap', 'StdLap', 'BestLap', 'PaceVsAvg', 'ConsistencyScore', 'GapFromBest', 'RacePhase', 'RaceProgress%']
 
     df_features = df[[col for col in feature_cols if col in df.columns]].copy()
     df_features = df_features.dropna(subset=['LapTimeSeconds'])
@@ -98,5 +98,6 @@ if __name__ == '__main__':
 
     print(f"Saved features:::")
     print(f"\nFirst few rows: \n{features_df.head()}")
+    print(features_df.columns)
 
 
