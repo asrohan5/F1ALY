@@ -43,7 +43,7 @@ This section maps the original business questions to Phase A deliverables and ou
 - **Business Use:** Teams can now quantify cost of tire wear and optimize pit stop windows
 
 **2. How can race and telemetry data enable optimal strategy and pit stop decisions?**
-- **Answer:** We demonstrated that:
+- **Answer:**  Demonstrated that:
   - Pit stop data (68 pit-related laps) can be extracted and analyzed from session data
   - TireAge is a quantifiable driver of pace; older tires = slower laps
   - RaceProgress% shows that late-race conditions differ significantly from early race (24.3% importance)
