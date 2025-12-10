@@ -147,18 +147,20 @@ def load_session_from_disk(year, grand_prix, session_type):
 if __name__ == '__main__':
 
     sessions_to_fetch = [
-        (2024, 'Brazil', 'R'),
-        (2024, 'Belgium', 'R'),
-        (2024, 'Australia', 'R')
+        (2024, 'Belgian Grand Prix', 'R'),
+        (2024, 'Australian Grand Prix', 'R'),
+        (2024, 'Saudi Arabian Grand Prix', 'R'),
+        (2024, 'Bahrain Grand Prix', 'R')
     ]
 
     results = batch_fetch_sessions(sessions_to_fetch)
 
-    print('Testing disk Load')
-    laps_df, metadata = load_session_from_disk(2024, 'Brazil', 'R')
+    print('Testing disk Load for all sessions')
+    for year, gp, sess in sessions_to_fetch:
+        print(f'\n{year} {gp} {sess}')
+        laps_df, metadata = load_session_from_disk(year, gp, sess)
 
-    if laps_df is not None:
-        print(f"\n Laps Dataframe Info:")
-        print(f"Shape: {laps_df.shape}")
-        print(f"\n First few rows:")
-        print(laps_df.head())
+        if laps_df is not None:
+            print(f'Shape: {laps_df.shape}')
+        else:
+            print('Could not load from disk')
